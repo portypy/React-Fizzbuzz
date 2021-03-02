@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 
+
+
 function App() {
+
+  const [number, setNumber] = useState(1);
+  const [answer, setAnswer] = useState("");
+
+  useEffect(() => {
+    if (number % 3 === 0 && number % 5 === 0) {
+      setAnswer("fizzbuzz")
+    } else if (number % 3 === 0) {
+      setAnswer("fizz")
+    } else if (number % 5 === 0) {
+      setAnswer("buzz")
+    } else
+      setAnswer(number)
+  }, [number]);
+
+  const handleAdd = () => {
+    setNumber(number + 1);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <button onClick={() => handleAdd()}>Next Number</button>
+      {/* <h4>{number}</h4> */}
+      <h4>{answer}</h4>
+    </>
   );
 }
 
